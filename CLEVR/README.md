@@ -17,8 +17,9 @@ Our primary modifications are added to:
 
 ## Running this Code
 
-1. You will need to download and install Blender. Follow the instructions here:
-   https://github.com/serenabooth/Bayes-TrEx/tree/master/CLEVR/clevr-dataset-gen
+1. You will need to download and install Blender. Follow the instructions 
+   in CLEVR/clevr-dataset-gen/README.md.
+   
    You may need to add a .pth file to the site-packages of Blender's
    bundled python with a command like this:
 
