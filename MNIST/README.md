@@ -15,8 +15,21 @@ All codes are written in `Python 3`, with `pytorch`  and `pyro` as the deep lear
 	1. `baseline`: use the baseline model (trained on SVHN).
 	2. `adda`: use the domain-adaptation model (trained on SVHN and unlabeled MNIST).
 
-Each of the above scripts writes a message to the console like:
+## Results
+
+Each of the sampling scripts writes a message to the console like:
 `Sample: 100%|█| 2000/2000 [18:26,  1.81it/s, step size=5.94e-03, acc. prob=0.811
 `
-This message includes the sampled probability (e.g., 0.811). 
-saves a .txt file and a batch of images to the `results/` directory.
+This message includes the sampled probability (e.g., 0.811).
+In addition, the script saves a .txt file to the `results/` directory.
+Each .txt file contains the sampled latent codes, which can be rendered as examples.
+To render these examples, use the scripts `latents_to_images.py`
+
+Example Usage:
+
+`python3 latents_to_images.py --nn-model gan --dataset mnist --nn-model-path saved_models/mnist_gan.pth --latent-file results/ambivalent/gan_mnist_h0.txt`
+
+`nn-model: gan | vae`
+`dataset: mnist | fashion-mnist`
+`nn-model-path: <path to .pth file>`
+`latent-file: <path to .txt file of interest>`
