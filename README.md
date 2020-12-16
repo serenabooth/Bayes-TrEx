@@ -33,7 +33,7 @@ Bayes-TrEx requires a data distribution---whether manually-defined or learned. W
 @inproceedings{booth21:bayestrex,  
 &emsp;  title = {Bayes-TrEx: A Bayesian Sampling Approach to
                  Model Transparency by Example}  
-&emsp;  author = {Serena Booth and Yilun Zhou and Ankit Shah and Julie Shah},
+&emsp;  author = {Serena Booth and Yilun Zhou and Ankit Shah and Julie Shah},  
 &emsp;  booktitle = {AAAI},  
 &emsp;  year = {2021},  
 }
