@@ -1,6 +1,8 @@
-# Bayes-TrEx
+# Bayes-TrEx: A Bayesian Sampling Approach to Model Transparency by Example
 
 Post-hoc explanation methods are gaining popularity as tools for interpreting, understanding, and debugging neural networks. Most post-hoc methods explain decisions in response to individual inputs. These individual inputs are typically drawn from the test set; however, the test set may be biased or may only sparsely invoke some model behaviours. To address these challenges, we introduce Bayes-TrEx, a model-agnostic method for generating distribution-conforming examples of known prediction confidence.  Using a classifier prediction and a data generator, Bayes-TrEx can be used to visualize class boundaries; to find in-distribution adversarial examples; to understand novel-class extrapolation; and to expose neural network overconfidence. We demonstrate Bayes-TrEx with rendered data (CLEVR) and organic data (MNIST, Fashion-MNIST).
+
+## Method Overview: A Corgi/Bread Classification Task
 
 <p align="center">
   <img src="./Images/level_set_overview.svg" alt="A visual overview of the main ideas behind Bayes-TrEx, showing a decision surface for a Corgi/Bread classifier and the associated level set slices.">
@@ -13,7 +15,9 @@ Post-hoc explanation methods are gaining popularity as tools for interpreting, u
   Bottom Right: Sampling directly from the true posterior is infeasible, so we relax the formulation by "widening" the level set. By using different data distributions and confidences, Bayes-TrEx can uncover examples that invoke various model behaviors to improve model transparency.
 </p>
 
+## Paper (with Appendix)
 
+The paper and appendix are online [here](./bayestrex_full_paper.pdf).
 
 ## CLEVR Experiments
 
@@ -22,3 +26,16 @@ Instructions: `CLEVR/README.md`
 ## (Fashion-)MNIST Experiments
 
 Instructions: `MNIST/README.md`
+
+## Citation
+
+@inproceedings{booth21:bayestrex,
+  title = {Bayes-TrEx: A Bayesian Sampling Approach to Model Transparency by Example},
+  author = {Serena Booth and Yilun Zhou and Ankit Shah and Julie Shah},
+  booktitle = {AAAI},
+  year = {2021},
+}
+
+## Questions/comments?
+
+Email {serenabooth, yilun, ajshah, julie_a_shah}@csail.mit.edu
