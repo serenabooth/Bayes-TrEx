@@ -29,12 +29,14 @@ Instructions: `MNIST/README.md`
 
 ## Citation
 
-@inproceedings{booth21:bayestrex,
-  title = {Bayes-TrEx: A Bayesian Sampling Approach to Model Transparency by Example},
-  author = {Serena Booth and Yilun Zhou and Ankit Shah and Julie Shah},
-  booktitle = {AAAI},
-  year = {2021},
+@inproceedings{booth21:bayestrex,  
+&emsp;  title = {Bayes-TrEx: A Bayesian Sampling Approach to
+&emsp;           Model Transparency by Example}  
+&emsp;  author = {Serena Booth and Yilun Zhou and Ankit Shah and Julie Shah},
+&emsp;  booktitle = {AAAI},  
+&emsp;  year = {2021},  
 }
+
 
 ## Questions/comments?
 
