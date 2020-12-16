@@ -1,8 +1,9 @@
 # Bayes-TrEx: A Bayesian Sampling Approach to Model Transparency by Example
 
-Post-hoc explanation methods are gaining popularity as tools for interpreting, understanding, and debugging neural networks. Most post-hoc methods explain decisions in response to individual inputs. These individual inputs are typically drawn from the test set; however, the test set may be biased or may only sparsely invoke some model behaviours. To address these challenges, we introduce Bayes-TrEx, a model-agnostic method for generating distribution-conforming examples of known prediction confidence.  Using a classifier prediction and a data generator, Bayes-TrEx can be used to visualize class boundaries; to find in-distribution adversarial examples; to understand novel-class extrapolation; and to expose neural network overconfidence. We demonstrate Bayes-TrEx with rendered data (CLEVR) and organic data (MNIST, Fashion-MNIST).
+Post-hoc explanation methods are gaining popularity for interpreting, understanding, and debugging neural networks. Most analyses using such methods explain decisions in response to inputs drawn from the test set. However, the test set may have few
+examples that trigger some model behaviors, such as high-confidence failures or ambiguous classifications. To address these challenges, we introduce a flexible model inspection framework: Bayes-TrEx. Given a data distribution, Bayes-TrEx finds in-distribution examples with a specified prediction confidence. We demonstrate several use cases of Bayes-TrEx, including revealing highly confident (mis)classifications, visualizing class boundaries via ambiguous examples, understanding novel-class extrapolation behavior, and exposing neural network overconfidence. We use Bayes-TrEx to study classifiers trained on CLEVR, MNIST, and Fashion-MNIST, and we show that this framework enables more flexible holistic model analysis than just inspecting the test set. Code is available at [https://github.com/serenabooth/Bayes-TrEx](https://github.com/serenabooth/Bayes-TrEx).
 
-## Method Overview: A Corgi/Bread Classification Task
+## Method Overview: Analyzing a Corgi/Bread Classifier
 
 <p align="center">
   <img src="./Images/level_set_overview.svg" alt="A visual overview of the main ideas behind Bayes-TrEx, showing a decision surface for a Corgi/Bread classifier and the associated level set slices.">
@@ -19,19 +20,19 @@ Post-hoc explanation methods are gaining popularity as tools for interpreting, u
 
 The paper and appendix are online [here](./bayestrex_full_paper.pdf).
 
-## CLEVR Experiments
+## Experiments
 
-Instructions: `CLEVR/README.md`
+Bayes-TrEx requires a data distribution---whether manually-defined or learned. We demonstrate Bayes-TrEx on CLEVR, with manually-defined scene graphs. We also demonstrate Bayes-TrEx on Fashion-MNIST and MNIST, with learned VAEs or GANs to represent the data distribution.
 
-## (Fashion-)MNIST Experiments
+[CLEVR Code](./CLEVR)
 
-Instructions: `MNIST/README.md`
+[(Fashion-)MNIST Code](./MNIST)
 
 ## Citation
 
 @inproceedings{booth21:bayestrex,  
 &emsp;  title = {Bayes-TrEx: A Bayesian Sampling Approach to
-&emsp;           Model Transparency by Example}  
+                 Model Transparency by Example}  
 &emsp;  author = {Serena Booth and Yilun Zhou and Ankit Shah and Julie Shah},
 &emsp;  booktitle = {AAAI},  
 &emsp;  year = {2021},  
