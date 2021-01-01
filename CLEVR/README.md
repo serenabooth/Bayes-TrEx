@@ -80,5 +80,6 @@ Output is saved to `output/`. In each results folder, we create an `accepted_lat
 
 ## Questions?
 
-If you have questions about this Bayes-TrEx+CLEVR code, email serenabooth -at- csail.mit.edu 
+If you have questions about this Bayes-TrEx+CLEVR code, email serenabooth -at- csail.mit.edu
+
 If you have general questions about Bayes-TrEx, email {serenabooth, yilun, ajshah, julie_a_shah} -at- csail.mit.edu
