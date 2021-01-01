@@ -50,7 +50,8 @@ Our primary modifications are added to:
 
 In `clevr-iep/scripts/demo.sh`, you will find queries of the form:
 
-```request_template = 'python3 scripts/analyze_level_sets.py \
+```
+request_template = 'python3 scripts/analyze_level_sets.py \
                     --program_generator models/CLEVR/program_generator_18k.pt \
                     --execution_engine models/CLEVR/execution_engine_18k.pt \
                      --question "%s" \
