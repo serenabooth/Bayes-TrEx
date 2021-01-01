@@ -1,9 +1,12 @@
-# Bayes-Probe Experiments with CLEVR
+# Bayes-TrEx Experiments with CLEVR
+
+***A word of caution: this code is tightly coupled to specific versions and system setups of Blender, .blend files, 
+and certain python packages. If you're looking to try out Bayes-TrEx quickly, 
+we recommend instead starting with the MNIST and Fashion-MNIST experiments: [../MNIST](../MNIST)***
 
 For our experiments with CLEVR, we use and extend two repos distributed by the original CLEVR authors (Johnson et al.):
 
 1. For Inferring and Executing Programs for Visual Reasoning:  https://github.com/facebookresearch/clevr-iep
-
 2. For rendering new CLEVR scenes:  https://github.com/facebookresearch/clevr-dataset-gen
 
 Our primary modifications are added to:
@@ -73,3 +76,8 @@ python3 scripts/run_model.py   --program_generator models/CLEVR/program_generato
 The inference code is contained in `clevr-iep/scripts/analyze_level_sets.py`.
 
 Output is saved to `output/`. In each results folder, we create an `accepted_latents.txt` file, which consists of the respective lists of accepted proposals and their corresponding probabilities.
+
+## Questions?
+
+If you have questions about this Bayes-TrEx+CLEVR code, email serenabooth -at- csail.mit.edu 
+If you have general questions about Bayes-TrEx, email {serenabooth, yilun, ajshah, julie_a_shah} -at- csail.mit.edu

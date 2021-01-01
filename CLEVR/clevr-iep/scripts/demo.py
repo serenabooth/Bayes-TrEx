@@ -3,7 +3,7 @@ import os
 """
 example question: "How many <x>?"
 prob_test: 0 - Metropolis Hastings (one constraint), 1 - Metropolis Hastings (two constraints)
-out_of_distribution: 0 - false, 1 - true
+out_of_distribution: 0 - false, 1 - true, add cones, 2 - true, add corgis
 class_a: metropolis constraint. If class_a = 5 and prob_test = 0,
          will find scenes containing 5 of the target class
 class_b: optional, only used for prob_test = 1.
@@ -29,7 +29,7 @@ request_template = 'python3 scripts/analyze_level_sets.py \
                      --output_csv %s \
                      --test_name %s'
 
-num_iters = 10
+num_iters = 500
 
 """
 Example 1: Highly-confident scenes
@@ -84,19 +84,19 @@ Set remove_object_type
 """
 
 # find scenes which contain NO CUBES, but the classifier has high confidence contain 1 cube
-num_cylinders = 1
+num_cubes = 1
 
 request = request_template % (
-                "How many cylinders?",                               # question
+                "How many cubes?",                               # question
                 "0",                                             # prob_test
                 "1",                                             # out_of_distribution
-                str(num_cylinders),                                  # class_a
+                str(num_cubes),                                  # class_a
                 "-1",                                            # class_b
-                "demo/in_dist_adv/" + str(num_cylinders) + "_cubes_" + str(num_iters) + "iters",      # save_dir
-                "cylinder",                                          # remove_object_type
+                "demo/novel_class/" + str(num_cubes) + "_cubes_" + str(num_iters) + "iters",      # save_dir
+                "cube",                                          # remove_object_type
                 str(num_iters),                                  # num_iters
                 "../output/output.csv",                          # csv for plotting
-                "in_dist_adv"
+                "novel_class"
          )
 os.system(request)
 
@@ -112,3 +112,29 @@ request = "python3 scripts/run_model.py \
                 --image img/5cones.png \
                 --question 'How many cubes?'"
 os.system(request)
+
+"""
+Example 5: Novel class extrapolation scenes with Corgis
+
+Set OOD = 2
+Set remove_object_type
+"""
+
+repeat_n = 10
+for n in range(repeat_n):
+    # find scenes which contain NO CUBES, but the classifier has high confidence contain 5 cubes
+    num_cubes = 5
+
+    request = request_template % (
+                    "How many cubes?",                               # question
+                    "0",                                             # prob_test
+                    "2",                                             # out_of_distribution
+                    str(num_cubes),                                  # class_a
+                    "-1",                                            # class_b
+                    "demo/novel_class/" + str(num_cubes) + "_cubes_" + str(num_iters) + "iters_" + str(n),      # save_dir
+                    "cube",                                          # remove_object_type
+                    str(num_iters),                                  # num_iters
+                    "../output/output.csv",                          # csv for plotting
+                    "novel_class_corgi"
+             )
+    os.system(request)

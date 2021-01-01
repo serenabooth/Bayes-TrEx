@@ -63,11 +63,11 @@ def latent_to_image(z, save_dir):
         json.dump(z, outfile)
 
 
-    output_image_dir = '../output/neurips/saliency_map_comparisons/images/' + save_dir
-    output_scene_dir = '../output/neurips/saliency_map_comparisons/scenes/' + save_dir
+    output_image_dir = '../output/demo/saliency_map_comparisons/images/' + save_dir
+    output_scene_dir = '../output/demo/saliency_map_comparisons/scenes/' + save_dir
 
     # call blender to generate image
-    blender_request = "blender \
+    blender_request = "~/blender/blender \
                         --background \
                         --python ../clevr-dataset-gen/image_generation/render_images.py -- \
                         --start_idx %s \
@@ -80,8 +80,6 @@ def latent_to_image(z, save_dir):
                         --output_scene_dir %s \
                         --num_images 1 \
                         --use_gpu 1" % (latent_id, latent_filename, output_image_dir, output_scene_dir)
-    # print (blender_request)
-    # exit()
     os.system(blender_request)
 
     # tell us where to find the image
@@ -174,7 +172,9 @@ def main(args):
             AVAILABLE_OBJECTS = [(v, k) for k, v in properties['shapes'].items()]
             AVAILABLE_SIZES = list(properties['sizes'].items())
             AVAILABLE_OBJECTS.append(('Cone', 'cone'))
+            AVAILABLE_OBJECTS.append(('Corgi', 'corgi'))
 
+        print (AVAILABLE_OBJECTS)
     except:
         print ("Unable to open properties file (properties_json argument)")
         exit()

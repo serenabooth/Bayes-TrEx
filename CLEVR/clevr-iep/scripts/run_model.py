@@ -21,7 +21,8 @@ from matplotlib import pyplot as plt
 
 import numpy as np
 import h5py
-from scipy.misc import imread, imresize
+# from scipy.misc import imread, imresize
+# from imageio import imread
 
 sys.path.insert(0, '../clevr-iep')
 from iep.data import ClevrDataset, ClevrDataLoader
@@ -334,11 +335,14 @@ def run_single_example(args, model, image_filepath = None, counting = True):
   # Load and preprocess the image
   img_size = (args.image_height, args.image_width)
   if image_filepath == None:
-    img = imread(args.image, mode='RGB')
+    # img = imread(args.image, pilmode='RGB')
+    img = Image.open(args.image).convert('RGB')
   else:
     print ("Found image")
-    img = imread(image_filepath, mode='RGB')
-  img = imresize(img, img_size, interp='bicubic')
+    # img = imread(image_filepath, pilmode='RGB')
+    img = Image.open(image_filepath).convert('RGB')
+  img = img.resize(img_size, resample=Image.BICUBIC)
+  img = np.array(img)
   img = img.transpose(2, 0, 1)[None]
   mean = np.array([0.485, 0.456, 0.406]).reshape(1, 3, 1, 1)
   std = np.array([0.229, 0.224, 0.224]).reshape(1, 3, 1, 1)

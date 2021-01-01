@@ -143,6 +143,9 @@ def add_material(name, **properties):
   assert len(obj.data.materials) == 0
   obj.data.materials.append(mat)
 
+  #if len(obj.data.materials) == 0:
+  #  obj.data.materials.append(mat)
+
   # Find the output node of the new material
   output_node = None
   for n in mat.node_tree.nodes:

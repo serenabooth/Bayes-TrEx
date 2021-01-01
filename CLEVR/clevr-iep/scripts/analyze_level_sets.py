@@ -94,7 +94,7 @@ def latent_to_image(z, output_dir = "../output/"):
         output_scene_dir =  output_dir + 'scenes/'
 
     # call blender to generate image
-    blender_request = "blender \
+    blender_request = "~/blender/blender \
                         --background \
                         --python ../clevr-dataset-gen/image_generation/render_images.py -- \
                         --start_idx %s \
@@ -127,12 +127,20 @@ def generate_random_object():
     """
     object_type = random.randint(0, NUM_AVAILABLE_OBJECTS-1)
     colour = random.randint(0, NUM_AVAILABLE_COLOURS-1)
+
     material = random.randint(0, NUM_AVAILABLE_MATERIALS-1)
+
+    selected_material = AVAILABLE_MATERIALS[material]
+
+    # only add the Corgi texture if it's a corgi
+    if (AVAILABLE_OBJECTS[object_type][0] == "Corgi"):
+        selected_material = ("CorgiMaterial", "CorgiMaterial")
+
     size = random.randint(0, NUM_AVAILABLE_SIZES-1)
     object = {
         "object_type": AVAILABLE_OBJECTS[object_type],
         "colour": AVAILABLE_COLOURS[colour],
-        "material": AVAILABLE_MATERIALS[material],
+        "material": selected_material,
         "size": AVAILABLE_SIZES[size],
         "x": random.uniform(-3.0,3.0),
         "y": random.uniform(-3.0,3.0),
@@ -225,6 +233,9 @@ def peturb_latent(old_latent, std=0.05,  output_dir = "../output/"):
                 if random.random() < 0.2:
                     size = random.randint(0, NUM_AVAILABLE_SIZES-1)
                     size = AVAILABLE_SIZES[size]
+
+                if object_type[0] == "Corgi":
+                    material = ("CorgiMaterial", "CorgiMaterial")
 
                 new_latent[str(i)] = {
                         "object_type": object_type,
@@ -508,6 +519,10 @@ def main(args):
     # OOD extrapolation: add object (out of training set)
     if args.out_of_distribution == 1:
         AVAILABLE_OBJECTS.append(('Cone', 'cone'))
+        NUM_AVAILABLE_OBJECTS += 1
+        obj_probs = torch.ones(NUM_AVAILABLE_OBJECTS) / NUM_AVAILABLE_OBJECTS
+    elif args.out_of_distribution == 2:
+        AVAILABLE_OBJECTS.append(('Corgi', 'corgi'))
         NUM_AVAILABLE_OBJECTS += 1
         obj_probs = torch.ones(NUM_AVAILABLE_OBJECTS) / NUM_AVAILABLE_OBJECTS
     # adversarial or OOD extrapolation: remove object
