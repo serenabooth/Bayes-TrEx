@@ -1,19 +1,4 @@
-import random, argparse, torch, os, pyro, math, uuid, json
-import numpy as np
-import csv
-from multiprocessing import set_start_method
-from tqdm import tqdm
-import matplotlib.pyplot as plt
-from torchvision.utils import save_image
-import pyro.distributions as dist
-from pyro.infer.mcmc import MCMC, HMC, NUTS
-
-# local imports
-import run_model
-from iep.data import ClevrDataset, ClevrDataLoader
-from iep.preprocess import tokenize, encode
-import iep.utils as utils
-import iep.programs
+import argparse, os, uuid, json
 
 AVAILABLE_MATERIALS, AVAILABLE_OBJECTS, AVAILABLE_SIZES, AVAILABLE_COLOURS = [], [], [], []
 NUM_AVAILABLE_OBJECTS, NUM_AVAILABLE_MATERIALS, NUM_AVAILABLE_SIZES, NUM_AVAILABLE_COLOURS = None, None, None, None
@@ -127,7 +112,7 @@ def read_scene(file, save_dir):
 
         print (latent)
         print (latent.keys())
-        print ("Which object should I remove?")
+        print ("Which object should I remove? -1 for none")
         object_to_remove = int(input())
 
         if object_to_remove != -1:
@@ -145,17 +130,7 @@ def read_scene(file, save_dir):
             img_file = latent_to_image(new_latent, save_dir)
         else:
             img_file = latent_to_image(latent, save_dir)
-        # print ("Which object should I change?")
-        # object_to_change = int(input())
-        #
-        # if object_to_change != -1:
-        #     # del latent[object_to_remove]
-        #     for shape_entry in AVAILABLE_OBJECTS:
-        #         if "sphere" == shape_entry[1]:
-        #             latent[object_to_change]["object_type"] = shape_entry
-        #     img_file = latent_to_image(latent, save_dir)
-        # else:
-        #     img_file = latent_to_image(latent, save_dir)
+
 
 def main(args):
     global AVAILABLE_OBJECTS, AVAILABLE_MATERIALS, AVAILABLE_SIZES, AVAILABLE_COLOURS
@@ -173,6 +148,7 @@ def main(args):
             AVAILABLE_SIZES = list(properties['sizes'].items())
             AVAILABLE_OBJECTS.append(('Cone', 'cone'))
             AVAILABLE_OBJECTS.append(('Corgi', 'corgi'))
+            AVAILABLE_MATERIALS.append(('CorgiMaterial', 'CorgiMaterial'))
 
         print (AVAILABLE_OBJECTS)
     except:

@@ -18,11 +18,8 @@ import torchvision
 import torchvision.transforms as T
 from matplotlib import pyplot as plt
 
-
 import numpy as np
 import h5py
-# from scipy.misc import imread, imresize
-# from imageio import imread
 
 sys.path.insert(0, '../clevr-iep')
 from iep.data import ClevrDataset, ClevrDataLoader
